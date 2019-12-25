@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"os"
+	"os/exec"
 	"os/user"
 )
 
@@ -36,6 +37,21 @@ func argsh() (string, string, error) {
 	return command, value, nil
 }
 
+func requestStsCredential(token string) (interface{}, error) {
+	binary, lookErr := exec.LookPath("aws")
+	if lookErr != nil {
+		return nil, lookErr
+	}
+
+	serial_id := readSerialNumber()
+
+	cmd := exec.Command(binary, "sts", "get-session-token", "--serial-number", serial_id, "--token-code", token, "--duration-seconds", "129600", "--profile", "wallex")
+	out, err := cmd.CombinedOutput()
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
 
 func installSerialNumber(value string) bool {
 

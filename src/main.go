@@ -45,7 +45,7 @@ func installSerialNumber(value string) bool {
 	}
 
 	d1 := []byte(value)
-	f, err := os.Create(usr.HomeDir+"/.walstsgen/.serial_id")
+	f, err := os.Create(usr.HomeDir+"/.awsstsgen/.serial_id")
 	defer f.Close()
 	n2, err := f.Write(d1)
 	fmt.Printf("wrote %d bytes\n", n2)
@@ -62,7 +62,7 @@ func readSerialNumber() string {
 		return ""
 	}
 
-	dat, err := ioutil.ReadFile(usr.HomeDir+"/.walstsgen/.serial_id")
+	dat, err := ioutil.ReadFile(usr.HomeDir+"/.awsstsgen/.serial_id")
 	fmt.Print(string(dat))
 
 	return string(dat)

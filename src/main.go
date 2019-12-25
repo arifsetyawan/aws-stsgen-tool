@@ -53,8 +53,8 @@ func argsh() (string, string, error) {
 	command := os.Args[1:][0]
 	value := os.Args[1:][1]
 
-	fmt.Println(command);
-	fmt.Println(value);
+	fmt.Println(command)
+	fmt.Println(value)
 
 	return command, value, nil
 }
@@ -97,6 +97,11 @@ func installSerialNumber(value string) bool {
 	}
 
 	d1 := []byte(value)
+
+	if _, err := os.Stat(usr.HomeDir+"/.awsstsgen/"); os.IsNotExist(err) {
+		os.Mkdir(usr.HomeDir+"/.awsstsgen", 0777)
+	}
+
 	f, err := os.Create(usr.HomeDir+"/.awsstsgen/.serial_id")
 	defer f.Close()
 	n2, err := f.Write(d1)

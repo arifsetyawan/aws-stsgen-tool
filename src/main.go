@@ -53,6 +53,20 @@ func requestStsCredential(token string) (interface{}, error) {
 	return out, nil
 }
 
+func configureLocalCredential(accessKey string, secretKey string, sessionToken string, profile string) bool {
+
+	binary, lookErr := exec.LookPath("aws")
+	if lookErr != nil {
+		return false
+	}
+	exec.Command(binary, "configure", "set", "aws_access_key_id", accessKey, "--profile", profile).CombinedOutput()
+	exec.Command(binary, "configure", "set", "aws_secret_access_key", secretKey, "--profile", profile).CombinedOutput()
+	exec.Command(binary, "configure", "set", "aws_session_token", sessionToken, "--profile", profile).CombinedOutput()
+
+	return true
+
+}
+
 func installSerialNumber(value string) bool {
 
 	usr, err := user.Current()

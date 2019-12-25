@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"io/ioutil"
 	"os"
@@ -9,6 +10,8 @@ import (
 )
 
 func main() {
+
+	var theRes map[string]interface{}
 
 	command, value, errArgs := argsh()
 	if errArgs != nil {
@@ -19,6 +22,25 @@ func main() {
 	switch command {
 	case "install":
 		installSerialNumber(value)
+	case "set":
+		result, err := requestStsCredential(value)
+		if err != nil {
+			fmt.Fprintf(os.Stderr, "error: %v\n", err)
+			os.Exit(1)
+		}
+
+		json.Unmarshal(result.([]byte), &theRes)
+
+		credentials := theRes["Credentials"].(map[string]interface{})
+		accessKey := credentials["AccessKeyId"].(string)
+		secretKey := credentials["SecretAccessKey"].(string)
+		sessionToken := credentials["SessionToken"].(string)
+
+		profile := "cred-mfa"
+
+		fmt.Println(credentials)
+
+		configureLocalCredential(accessKey, secretKey, sessionToken, profile)
 	}
 
 }

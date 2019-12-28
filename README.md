@@ -7,7 +7,7 @@ This small humble program is tends to help the user that have required to access
 - save the aws sts result to .aws/credential file under targeted profile that defined when configure this program.
 
 ## Binnary
-I have build the binnary and upload it under /bin directory. You can choose on what operating system you are working on Darwin or Linux. If you afraid on the binary, you can read through the code and rebuilt it your self ).
+I have built the binary and upload it under `/bin` directory. You can choose on what operating system you are working on Darwin or Linux. If you afraid on the binary, you can read through the code and rebuilt it your self :)).
 
 ## Install
 Before moving forward. Please makesure you already have aws-cli and base setup your aws credential and aws profile. After the base aws-cli setup is complete You need to setup or built config for this program by run `awsstsgen install`.

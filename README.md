@@ -1,4 +1,7 @@
 # aws-stsgen-tool
+
+[![Go Report Card](https://goreportcard.com/badge/github.com/arifsetyawan/aws-stsgen-tool)](https://goreportcard.com/report/github.com/arifsetyawan/aws-stsgen-tool)
+
 Amazon Web Service STS Helper to Local Credential File. 
 
 This small humble program is tends to help the user that have required to access their aws cli under the AWS  Security Token Service (STS). What this program do is : 

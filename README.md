@@ -35,3 +35,9 @@ it will prompt for configuration of `your mfa arn`, `your current base credentia
 ./bin/darwin/awsstsgen set
 ```
 set is the command to help you set your sts to `~/.aws/credential` file under the target-profile name. It will prompt for your mfa token. 
+
+https://www.buymeacoffee.com/arifsetyawan
+
+---
+## 💰 You can help me by Donating
+  [![BuyMeACoffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-ffdd00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://buymeacoffee.com/arifsetyawan)
